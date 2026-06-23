@@ -1,0 +1,14 @@
+[
+  { "id": "lys",      "name": "Le Lys",        "crest": "⚜️", "color": "#2c5f8a" },
+  { "id": "lion",     "name": "Le Lion",       "crest": "🦁", "color": "#9b2335" },
+  { "id": "aigle",    "name": "L'Aigle",       "crest": "🦅", "color": "#2b2b2b" },
+  { "id": "rose",     "name": "La Rose",       "crest": "🌹", "color": "#7b2d3b" },
+  { "id": "dragon",   "name": "Le Dragon",     "crest": "🐉", "color": "#3a6b4f" },
+  { "id": "epees",    "name": "Les Épées",     "crest": "⚔️", "color": "#5e6b73" },
+  { "id": "chateau",  "name": "Le Château",    "crest": "🏰", "color": "#6b3b6b" },
+  { "id": "cerf",     "name": "Le Cerf",       "crest": "🦌", "color": "#a07e2e" },
+  { "id": "faucon",   "name": "Le Faucon",     "crest": "🦅", "color": "#1f4f6b" },
+  { "id": "etoile",   "name": "L'Étoile",      "crest": "✨", "color": "#c8a24a" },
+  { "id": "sanglier", "name": "Le Sanglier",   "crest": "🐗", "color": "#4a3527" },
+  { "id": "couronne", "name": "La Couronne",   "crest": "👑", "color": "#a8862c" }
+]
