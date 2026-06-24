@@ -9,14 +9,15 @@ import { FORMAT_TITLES, renderPuzzle } from "./puzzles.js";
 const TODAY = dayKey();
 
 // Les jeux proposés chaque jour, dans l'ordre d'affichage.
+// `salt` : décalage propre à chaque jeu pour varier les tirages quotidiens.
 const FORMATS = [
-  { key: "vraifaux", icon: "⚖️" },
-  { key: "quisuisje", icon: "🕵️" },
-  { key: "motdujour", icon: "🔤" },
-  { key: "anagramme", icon: "🔀" },
-  { key: "pendu", icon: "✍️" },
-  { key: "definition", icon: "📖" },
-  { key: "oeuvre", icon: "🖼️" },
+  { key: "vraifaux", icon: "⚖️", salt: 0 },
+  { key: "quisuisje", icon: "🕵️", salt: 11 },
+  { key: "motdujour", icon: "🔤", salt: 23 },
+  { key: "anagramme", icon: "🔀", salt: 31 },
+  { key: "pendu", icon: "✍️", salt: 42 },
+  { key: "definition", icon: "📖", salt: 54 },
+  { key: "oeuvre", icon: "🖼️", salt: 67 },
 ];
 
 let DATA = { blasons: [], puzzles: {} };
@@ -126,7 +127,7 @@ function renderDailyHub() {
   const host = $("#dailyHost");
   clear(host);
   for (const f of FORMATS) {
-    const item = pickItem(DATA.puzzles[f.key], TODAY);
+    const item = pickItem(DATA.puzzles[f.key], TODAY, f.salt);
     const rec = dayRecords(TODAY)[f.key];
     const saved = rec && rec.itemId === item?.id ? rec : null;
 

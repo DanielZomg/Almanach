@@ -58,9 +58,11 @@ export function yesterdayKey(key) {
 }
 
 // Choix déterministe d'un item dans une banque, pour un jour donné.
-export function pickItem(bank, key) {
+// `salt` décale chaque jeu indépendamment, pour éviter que deux banques de même
+// longueur ne tombent sur le même indice le même jour.
+export function pickItem(bank, key, salt = 0) {
   if (!bank || !bank.length) return null;
-  return bank[Math.abs(epochDay(key)) % bank.length];
+  return bank[Math.abs(epochDay(key) + salt) % bank.length];
 }
 
 // ---------- Jeux du jour ----------

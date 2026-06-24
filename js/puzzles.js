@@ -30,7 +30,8 @@ function verdict(solved, text) {
 }
 
 // Bloc de réponses à choix multiple, partagé par plusieurs jeux.
-function makeChoices(host, options, answer, saved, onComplete) {
+// afterFinish(correct) est appelé une fois la réponse verrouillée (réponse fraîche ou restaurée).
+function makeChoices(host, options, answer, saved, onComplete, afterFinish) {
   const buttons = [];
   const finish = (idx) => {
     const correct = options[idx] === answer;
@@ -40,6 +41,7 @@ function makeChoices(host, options, answer, saved, onComplete) {
       else if (i === idx) b.classList.add("wrong");
     });
     if (!saved) onComplete({ status: correct ? "solved" : "failed", chosenIndex: idx }, correct);
+    if (afterFinish) afterFinish(correct);
   };
   host.appendChild(el("div", { class: "options" }, options.map((name, i) => {
     const b = el("button", { class: "opt-btn", onClick: () => finish(i) }, [name]);
@@ -106,7 +108,15 @@ function renderOeuvre(host, ctx) {
   img.addEventListener("error", () => { img.replaceWith(el("div", { class: "oeuvre-fallback", text: "🖼️ (image indisponible hors-ligne)" })); });
   host.appendChild(el("div", { class: "oeuvre-frame" }, [img]));
   host.appendChild(el("p", { class: "quiz-question", text: item.question }));
-  makeChoices(host, item.options, item.answer, ctx.saved, ctx.onComplete);
+  const info = el("div", { class: "vf-explain", hidden: true });
+  makeChoices(host, item.options, item.answer, ctx.saved, ctx.onComplete, (correct) => {
+    if (!item.detail) return;
+    info.hidden = false;
+    clear(info);
+    info.appendChild(verdict(correct, correct ? "Bien vu ! 🎉" : "Raté…"));
+    info.appendChild(el("div", { text: item.detail }));
+  });
+  host.appendChild(info);
 }
 
 /* ---------------- Clavier AZERTY partagé ---------------- */
@@ -276,6 +286,7 @@ function renderAnagramme(host, ctx) {
       done = true; paint();
       slots.forEach((s) => s.el.classList.add("good"));
       msg.hidden = false; msg.appendChild(verdict(true, "Bien joué ! 🎉"));
+      giveUp.hidden = true;
       ctx.onComplete({ status: "solved" }, true);
     } else {
       slotRow.classList.add("shake");
@@ -289,6 +300,7 @@ function renderAnagramme(host, ctx) {
     for (const ch of answer) slotRow.appendChild(el("div", { class: "ana-slot filled lose", text: ch }));
     clear(rackRow);
     msg.hidden = false; msg.appendChild(verdict(false, `La réponse était ${answer}`));
+    giveUp.hidden = true;
     ctx.onComplete({ status: "failed" }, false);
   } }, ["Voir la réponse"]);
   paint();
