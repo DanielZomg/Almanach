@@ -4,6 +4,7 @@ const KEY = "almanach.v1";
 const DEFAULT = {
   profile: null,        // { blasonId, createdAt }
   days: {},             // { 'YYYY-MM-DD': { format: { itemId, status, ... } } }
+  progress: {},         // { format: curseur } — avancement séquentiel dans chaque banque
   puzzleStreak: 0,
   puzzleLastDay: null,  // dernier jour où au moins un jeu a été réussi
   puzzleSolved: 0,
@@ -57,12 +58,21 @@ export function yesterdayKey(key) {
   return dayKey(d);
 }
 
-// Choix déterministe d'un item dans une banque, pour un jour donné.
-// `salt` décale chaque jeu indépendamment, pour éviter que deux banques de même
-// longueur ne tombent sur le même indice le même jour.
-export function pickItem(bank, key, salt = 0) {
+// Progression séquentielle : chaque jeu avance dans sa banque à son propre rythme,
+// indépendamment du calendrier (un jour sauté ne saute aucune énigme).
+export function gameCursor(format) {
+  return getState().progress[format] || 0;
+}
+
+export function advanceGame(format) {
+  update((s) => { s.progress[format] = (s.progress[format] || 0) + 1; });
+}
+
+// Item courant d'une banque selon le curseur. `salt` ne sert qu'à décaler le point
+// de départ de chaque jeu (variété au tout premier jour), sans rien faire sauter.
+export function sequentialItem(bank, cursor, salt = 0) {
   if (!bank || !bank.length) return null;
-  return bank[Math.abs(epochDay(key) + salt) % bank.length];
+  return bank[Math.abs(cursor + salt) % bank.length];
 }
 
 // ---------- Jeux du jour ----------

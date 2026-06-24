@@ -1,7 +1,7 @@
 // Point d'entrée : chargement des données, choix du blason, navigation, installation.
 import { el, clear, crest } from "./util.js";
 import {
-  getState, setProfile, dayKey, pickItem,
+  getState, setProfile, dayKey, gameCursor, advanceGame, sequentialItem,
   recordPuzzle, dayRecords, dailyProgress, liveStreak,
 } from "./state.js";
 import { FORMAT_TITLES, renderPuzzle } from "./puzzles.js";
@@ -127,9 +127,19 @@ function renderDailyHub() {
   const host = $("#dailyHost");
   clear(host);
   for (const f of FORMATS) {
-    const item = pickItem(DATA.puzzles[f.key], TODAY, f.salt);
+    const bank = DATA.puzzles[f.key] || [];
     const rec = dayRecords(TODAY)[f.key];
-    const saved = rec && rec.itemId === item?.id ? rec : null;
+    // Déjà joué aujourd'hui → on réaffiche l'item joué (retrouvé par son id) ;
+    // sinon → l'item courant du curseur (séquentiel, sans rien sauter).
+    let item, saved;
+    if (rec) {
+      const found = bank.find((x) => x.id === rec.itemId);
+      if (found) { item = found; saved = rec; }
+      else { item = sequentialItem(bank, gameCursor(f.key), f.salt); saved = null; }
+    } else {
+      item = sequentialItem(bank, gameCursor(f.key), f.salt);
+      saved = null;
+    }
 
     const card = el("div", { class: `daily-card${saved ? " done" : ""}` });
     const badge = el("span", { class: "daily-badge" });
@@ -166,6 +176,7 @@ function toggleCard(card) {
       onComplete: (record, solved) => {
         const full = { itemId: item.id, ...record };
         recordPuzzle(TODAY, f.key, full, solved);
+        advanceGame(f.key);
         card._ctx.saved = full;
         card.classList.add("done");
         setBadge(card._ctx.badge, full);
