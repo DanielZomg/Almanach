@@ -44,15 +44,15 @@
     { "id": "md-tempera", "answer": "TEMPERA", "hint": "Peinture à l'œuf, répandue avant l'essor de l'huile." },
     { "id": "md-retable", "answer": "RETABLE", "hint": "Panneau peint ou sculpté dressé derrière l'autel." },
     { "id": "md-beffroi", "answer": "BEFFROI", "hint": "Tour communale, symbole des libertés des villes du Nord." },
-    { "id": "md-enlumineur", "answer": "ENLUMINEUR", "hint": "Artiste qui orne et peint les manuscrits." },
-    { "id": "md-condottiere", "answer": "CONDOTTIERE", "hint": "Chef de mercenaires dans l'Italie de la Renaissance." },
     { "id": "md-gisant", "answer": "GISANT", "hint": "Effigie funéraire représentant le défunt couché." },
     { "id": "md-sfumato", "answer": "SFUMATO", "hint": "Technique des contours vaporeux, chère à Léonard." },
-    { "id": "md-triptyque", "answer": "TRIPTYQUE", "hint": "Œuvre peinte à trois volets." },
-    { "id": "md-ogive", "answer": "OGIVE", "hint": "Arc brisé caractéristique du gothique." },
+    { "id": "md-ogive", "answer": "OGIVE", "hint": "Arc brisé en amande, typique des cathédrales." },
     { "id": "md-manant", "answer": "MANANT", "hint": "Paysan, homme du commun." },
-    { "id": "md-scriptorium", "answer": "SCRIPTORIUM", "hint": "Salle où les moines copiaient les livres." },
-    { "id": "md-machicoulis", "answer": "MACHICOULIS", "hint": "Galerie en surplomb pour défendre le pied d'un rempart." }
+    { "id": "md-croisade", "answer": "CROISADE", "hint": "Expédition militaire vers la Terre sainte." },
+    { "id": "md-gothique", "answer": "GOTHIQUE", "hint": "Style des cathédrales à arcs brisés." },
+    { "id": "md-relique", "answer": "RELIQUE", "hint": "Reste vénéré d'un saint." },
+    { "id": "md-vassal", "answer": "VASSAL", "hint": "Homme lié à un seigneur par l'hommage." },
+    { "id": "md-seigneur", "answer": "SEIGNEUR", "hint": "Maître d'un fief au Moyen Âge." }
   ],
   "anagramme": [
     { "id": "an-blason", "answer": "BLASON", "hint": "Armoiries d'une famille ou d'un chevalier." },
@@ -69,7 +69,8 @@
     { "id": "an-troubadour", "answer": "TROUBADOUR", "hint": "Poète-musicien du Midi médiéval." },
     { "id": "an-reliquaire", "answer": "RELIQUAIRE", "hint": "Coffret précieux abritant des reliques." },
     { "id": "an-tapisserie", "answer": "TAPISSERIE", "hint": "Tenture tissée, grand art des Flandres." },
-    { "id": "an-cloitre", "answer": "CLOITRE", "hint": "Galerie carrée au cœur d'un monastère." }
+    { "id": "an-cloitre", "answer": "CLOITRE", "hint": "Galerie carrée au cœur d'un monastère." },
+    { "id": "an-triptyque", "answer": "TRIPTYQUE", "hint": "Œuvre peinte à trois volets." }
   ],
   "pendu": [
     { "id": "pe-charlemagne", "answer": "CHARLEMAGNE", "hint": "Empereur couronné en l'an 800." },
@@ -86,7 +87,10 @@
     { "id": "pe-feodalite", "answer": "FEODALITE", "hint": "Système des fiefs, des seigneurs et des vassaux." },
     { "id": "pe-chambord", "answer": "CHAMBORD", "hint": "Château Renaissance à l'escalier à double révolution." },
     { "id": "pe-humanisme", "answer": "HUMANISME", "hint": "Courant renaissant tourné vers les textes antiques." },
-    { "id": "pe-byzance", "answer": "BYZANCE", "hint": "Ancien nom de Constantinople, capitale de l'Empire d'Orient." }
+    { "id": "pe-byzance", "answer": "BYZANCE", "hint": "Ancien nom de Constantinople, capitale de l'Empire d'Orient." },
+    { "id": "pe-condottiere", "answer": "CONDOTTIERE", "hint": "Chef de mercenaires dans l'Italie de la Renaissance." },
+    { "id": "pe-scriptorium", "answer": "SCRIPTORIUM", "hint": "Salle où les moines copiaient les manuscrits." },
+    { "id": "pe-machicoulis", "answer": "MACHICOULIS", "hint": "Galerie en surplomb au sommet d'un rempart." }
   ],
   "definition": [
     { "id": "de-tympan", "definition": "Surface sculptée, en demi-lune, surmontant le portail d'une église.", "answer": "Tympan", "options": ["Tympan", "Linteau", "Voussure", "Trumeau"] },

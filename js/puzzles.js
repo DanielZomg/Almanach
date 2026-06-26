@@ -154,6 +154,8 @@ function renderWordle(host, ctx) {
   host.appendChild(el("p", { class: "card-eyebrow", text: `Devine le mot · ${len} lettres` }));
   host.appendChild(el("p", { class: "vf-explain", text: `Indice : ${item.hint}` }));
   const grid = el("div", { class: "wordle-grid" });
+  // Largeur fluide : plafonnée pour les mots courts, rétrécie pour les longs.
+  grid.style.maxWidth = `${len * 52}px`;
   host.appendChild(grid);
   const keyState = {};
   const kb = el("div", { class: "wordle-keyboard" });

@@ -1,5 +1,5 @@
 // Service worker : installation hors-ligne + cache des images d'œuvres.
-const VERSION = "almanach-v3";
+const VERSION = "almanach-v5";
 const SHELL = [
   ".",
   "index.html",

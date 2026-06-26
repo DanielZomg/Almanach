@@ -111,9 +111,10 @@ h1, h2, .brand h1, .card h2, .daily-title, .stat-num, .brand-badge { font-family
 .oeuvre-fallback { padding: 50px 10px; text-align: center; color: var(--ink-soft); background: #fff; border-radius: 4px; }
 
 /* ---------- Wordle ---------- */
-.wordle-grid { display: grid; gap: 6px; justify-content: center; margin: 0 auto 16px; }
+/* Largeur fluide : pour un mot long, les cases rétrécissent pour rester visibles. */
+.wordle-grid { display: grid; gap: 6px; margin: 0 auto 16px; width: 100%; }
 .wordle-row { display: grid; gap: 6px; }
-.wordle-cell { width: 44px; height: 44px; border: 2px solid var(--line); border-radius: 8px; display: grid; place-items: center; font-size: 21px; font-weight: 800; text-transform: uppercase; background: #fff; color: var(--ink); }
+.wordle-cell { aspect-ratio: 1; min-width: 0; border: 2px solid var(--line); border-radius: 8px; display: grid; place-items: center; font-size: clamp(13px, 5vw, 22px); font-weight: 800; text-transform: uppercase; background: #fff; color: var(--ink); }
 .wordle-cell.filled { border-color: var(--ink-soft); }
 .wordle-cell.good { background: var(--good); color: #fff; border-color: var(--good); }
 .wordle-cell.close { background: var(--close); color: #3a2a00; border-color: var(--close); }
@@ -193,5 +194,3 @@ h1, h2, .brand h1, .card h2, .daily-title, .stat-num, .brand-badge { font-family
 .install-close { position: absolute; top: 8px; right: 10px; background: none; border: none; color: rgba(244,236,217,0.6); font-size: 22px; line-height: 1; }
 .install-steps { font-size: 13px; color: rgba(244,236,217,0.82); line-height: 1.5; }
 .install-steps b { color: #fff; }
-
-@media (min-width: 480px) { .wordle-cell { width: 50px; height: 50px; } }
